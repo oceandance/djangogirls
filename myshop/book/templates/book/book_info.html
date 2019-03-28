@@ -1,0 +1,74 @@
+{% extends 'book/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="card text-center">
+
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="">Описание</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="">Об авторе</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="">Читать онлайн</a>
+            </li>
+            </ul>
+        </div>
+
+        <div class="card-body" style="justify-content: flex-start">
+
+            <img class="book-card-img book-card-img-align" align="left" src="{% static 'images/default_book.jpg' %}">
+            <h3 class="card-title card-name-size" align="left"> {{ book.name }}</h3>
+            <table class="table table-bordered table-striped table-hover book-info-table">
+                <tbody>
+                    <tr>
+                        <td>Цена</td>
+                        <td>{{ book.price }}</td>
+                    </tr>
+                    <tr>
+                        <td>Автор</td>
+                        <td>
+                            {% for author in authors %}
+                                {% ifequal author.author_id book.author_id %}
+                                    <a href="{% url 'author_info' pk=author.pk %}" class="card-link">{{ author.author_name }}</a>
+                                {% endifequal %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                     <tr>
+                        <td>Жанр</td>
+                        <td>
+                            {% for cat in category %}
+                                {% ifequal cat.category_id book.category_id %}
+                                    {{ cat.name }}
+                                {% endifequal %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Изданиz</td>
+                        <td>{{ book.created_date }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="card-text card-description-size">{{ book.description }}</p>
+
+            {% if user.is_authenticated %}
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+
+                    <button type="submit" class="btn btn-outline-primary btn-lg">Купить</button>
+                </form>
+            {% endif %}
+
+
+        </div>
+    </div>
+{% endblock %}
+
+

@@ -1,36 +1,22 @@
-{% extends 'blog/base.html' %}
-
-{#{% block content %}#}
-{#	{% for post in posts %}#}
-{#		<div class="post">#}
-{#			<div class="date">#}
-{#				<p>published: {{ post.published_date}}</p>#}
-{#			</div>#}
-{#			<h1></h1>#}
-{#			<p>{{ post.text|linebreaks }}</p>#}
-{#		</div>	#}
-{#	{% endfor %}#}
-{#{% endblock %}#}
-
+{% extends 'book/base.html' %}
 {% load staticfiles %}
 
 {% block content %}
     <div>
-        {% for post in posts %}
+        {% for book in books %}
             <div class="card" style="width: 1000px;margin-bottom: 16px;margin-top: 16px;justify-content: flex-start; align-items: center; flex-direction: row ">
                 <img style="width: 180px;height: 120px; margin: 8px; flex: content" src="{% static 'images/default_book.jpg' %}">
                 <div style="width: 780px; flex: content">
                     <h5 class="card-title">
-                        <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+                        {{ book.name }}
                     </h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ post.text }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Цена: {{ book.price }} тг</h6>
                     <p class="card-text">
-                        {{ post.created_date }}
-{#                        {% for author in authors %}#}
-{#                            {% ifequal author.author_id book.author_id %}#}
-{#                                <a href="" class="card-link">{{ author.author_name }}</a>#}
-{#                            {% endifequal %}#}
-{#                        {% endfor %}#}
+                        {% for author in authors %}
+                            {% ifequal author.author_id book.author_id %}
+                                <a href="" class="card-link">{{ author.author_name }}</a>
+                            {% endifequal %}
+                        {% endfor %}
                     </p>
                 </div>
 

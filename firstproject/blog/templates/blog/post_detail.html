@@ -1,0 +1,51 @@
+{% extends 'blog/base.html' %}
+
+
+{#{% block content %}#}
+{#    <div class="post">#}
+{#        {% if post.published_date %}#}
+{#            <div class="date">#}
+{#                {{ post.published_date }}#}
+{#            </div>#}
+{#        {% else %}#}
+{#            <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>#}
+{#        {% endif %}#}
+{#        {% if user.is_authenticated %}#}
+{#            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>#}
+{#            <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>#}
+{#        {% endif %}#}
+{#        <h2>{{ post.title }}</h2>#}
+{#        <p>{{ post.text|linebreaksbr }}</p>#}
+{#    </div>#}
+{#{% endblock %}#}
+
+
+{% load staticfiles %}
+
+{% block content %}
+    <div>
+            <div class="card" style="width: 1000px;margin-bottom: 16px;margin-top: 16px;justify-content: flex-start; align-items: center; flex-direction: row ">
+                <img style="width: 180px;height: 120px; margin: 8px; flex: content" src="{% static 'images/default_book.jpg' %}">
+                <div style="width: 780px; flex: content">
+                    <h5 class="card-title">
+                        <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+                        {% if user.is_authenticated %}
+                            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                        {% endif %}
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ post.text }}</h6>
+                    <p class="card-text">
+                        {{ post.created_date }}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+{% endblock %}
+
+

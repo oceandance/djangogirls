@@ -1,0 +1,47 @@
+{% extends 'book/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="d-flex justify-content-start justify-content-between flex-wrap">
+        {% for book in books %}
+            <div class="card card-info">
+                <img class="book-card-img" src="{% static 'images/default_book.jpg' %}">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{ book.name }}
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Цена: {{ book.price }} тг</h6>
+                    <p class="card-text">
+                        {% for author in authors %}
+                            {% ifequal author.author_id book.author_id %}
+                                <a href="{% url 'author_info' pk=author.pk %}" class="card-link">{{ author.author_name }}</a>
+                            {% endifequal %}
+                        {% endfor %}
+                    </p>
+                </div>
+
+                <a href="{% url 'book_info' pk=book.pk %}" class="btn btn-outline-primary">Подробнее</a>
+
+                <div class="card-footer">
+                    <small class="text-muted">
+                        Created: {{ book.created_date }}
+                    </small>
+                </div>
+
+            {% if user.is_authenticated %}
+                <form style="position: absolute; right: 10px;top: 10px;"  method=POST>
+                    <button style="width: 0px;height: 0px" type="submit">
+                        <img src="{% static 'images/ic_add_order.png' %}">
+                    </button>
+                </form>
+
+            {% endif %}
+
+            </div>
+
+    	{% endfor %}
+
+        </div>
+{% endblock %}
+
+

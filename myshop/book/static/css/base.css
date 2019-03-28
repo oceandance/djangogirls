@@ -1,0 +1,58 @@
+.navbar{
+    font-size: 15px;
+}
+
+.book-card-img{
+    height: 160px;
+}
+
+.book-card-img-align{
+    margin-left: 8px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    margin-right: 16px;
+}
+
+.card-info{
+    width: 220px;
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.card .btn{
+    width: 100px;
+    margin-left: 12px;
+    margin-bottom:8px;
+}
+
+.card-description-size{
+    font-size: 15px;
+    text-align: left;
+    margin-top: 16px;
+}
+
+.card-name-size{
+    font-size: 19px;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
+.book-info-table{
+    width: 400px;
+}
+
+.btn-lg{
+    float: right;
+    width: 180px;
+    margin-right: 8px;
+}
+
+.order-card{
+    width: 500px;
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}

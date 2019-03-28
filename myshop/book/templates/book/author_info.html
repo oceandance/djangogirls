@@ -1,0 +1,39 @@
+{% extends 'book/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="card text-center">
+
+        <div class="card-body" style="justify-content: flex-start">
+
+            <img class="book-card-img book-card-img-align" align="left" src="{% static 'images/default_book.jpg' %}">
+            <h3 class="card-title card-name-size" align="left"> {{ author.author_name }}</h3>
+            <table class="table table-bordered table-striped table-hover book-info-table">
+                <tbody>
+                    <tr>
+                        <td>Родился</td>
+                        <td>{{ author.birthday_date }}</td>
+                    </tr>
+                    <tr>
+                        <td>Умер</td>
+                        <td> {{ author.death_date }}</td>
+                    </tr>
+                     <tr>
+                        <td>Книги</td>
+                        <td>
+                            {% for book in books %}
+                                {% ifequal author.author_id book.author_id %}
+                                    {{ book.name }} ,
+                                {% endifequal %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="card-text card-description-size">{{ author.biography }}</p>
+
+        </div>
+    </div>
+{% endblock %}
+
+

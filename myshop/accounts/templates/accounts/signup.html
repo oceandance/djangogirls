@@ -1,0 +1,15 @@
+
+{% extends 'accounts/base.html' %}
+{% block content %}
+    <div class="bg-light" style="position: absolute; left:30%;right: 30%; top: 15%; margin-left: -100px; padding:16px; argin-top:-50px; ">
+
+        <h2>Sign up</h2>
+        <form method="post">
+            <div class="form-group row">
+                {% csrf_token %}
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-primary" >Регистрация</button>
+        </form>
+    </div>
+{% endblock %}
